@@ -1,5 +1,7 @@
 .header{
     background-color: #FFFFFF;
+    border-bottom: 1px solid #F4F4F4F4;
+    padding: 10px 20px 10px 20px;
 }
 
 .header__inner{
