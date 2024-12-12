@@ -10,4 +10,9 @@ class ProductsController extends Controller
     {
         return view('products');
     }
+
+    public function register()
+    {
+        return view('register');
+    }
 }

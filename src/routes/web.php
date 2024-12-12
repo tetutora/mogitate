@@ -14,7 +14,7 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('products');
-});
+Route::get('/products',[ProductsController::class,'products']);
+
+Route::get('/register',[ProductsController::class,'register']);
 
