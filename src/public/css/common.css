@@ -1,0 +1,16 @@
+.header{
+    background-color: #FFFFFF;
+}
+
+.header__inner{
+
+}
+
+.header__logo{
+    font-size: 30px;
+    font-weight: 500;
+    font-style: italic;
+    font-family: "Playwrite PT Guides", cursive;
+    color: #F5C800;
+    text-decoration: none;
+}
