@@ -13,8 +13,9 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/register', [ProductsController::class, 'showRegisterForm']);
 
 Route::get('/products',[ProductsController::class,'products']);
 
-Route::get('/register',[ProductsController::class,'register']);
+Route::post('/register',[ProductsController::class,'register']);
 

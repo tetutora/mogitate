@@ -11,7 +11,7 @@
             <h2>商品一覧</h2>
         </div>
         <div class="header__button">
-            <button type="submit" class="header__button-submit">＋ 商品を追加</button>
+            <a href="/register" class="header__button-submit">＋ 商品を追加</a>
         </div>
     </div>
     <div class="list__content">

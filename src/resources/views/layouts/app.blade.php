@@ -16,6 +16,8 @@
     </header>
     <main>
         @yield('content')
+
+        @yield('scripts')
     </main>
 
 </body>
