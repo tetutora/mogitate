@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="list__content">
-        <form action="{{ route('products') }}" method="get" id="sort-form">
+        <form action="{{ route('products') }}" method="get" id="sort-form" class="search">
             <div class="search-form">
                 <div class="search-form-name">
                     <input type="search" name="search" class="search-form__input-name" placeholder="商品名で検索" value="{{ request('search') }}">
@@ -29,10 +29,18 @@
                 <div class="search-form__input">
                     <select name="price_order" class="search-form__input-value" onchange="this.form.submit()">
                         <option value="" disabled selected>価格で並べ替え</option>
-                        <option value="asc" {{ request('price_order') == 'asc' ? 'selected' : '' }}>安い順</option>
-                        <option value="desc" {{ request('price_order') == 'desc' ? 'selected' : '' }}>高い順</option>
+                        <option value="desc" {{ request('price_order') == 'desc' ? 'selected' : '' }}>高い順に表示</option>
+                        <option value="asc" {{ request('price_order') == 'asc' ? 'selected' : '' }}>安い順に表示</option>
                     </select>
                 </div>
+                <!-- タグ表示エリア -->
+                @if(request('price_order'))
+                    <div class="filter-tags">
+                        <span class="filter-tag">{{ request('price_order') == 'asc' ? '安い順に表示' : '高い順に表示' }}
+                            <button type="button" class="tag-clear" onclick="resetFilter()">×</button>
+                        </span>
+                    </div>
+                @endif
             </div>
         </form>
         <div class="product-grid">
@@ -49,8 +57,17 @@
             @endforeach
         </div>
     </div>
-    <div class="pagination">
-        {{ $products->links('pagination') }}
+    <div class="pagination-container">
+        <div class="Pagination">
+        {{ $products->links('vendor.pagination.pagination') }}
+        </div>
     </div>
 </div>
+<script>
+    function resetFilter() {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('price_order'); // 'price_order' パラメータを削除
+        window.location.href = url.toString(); // 新しいURLでリダイレクト
+    }
+</script>
 @endsection

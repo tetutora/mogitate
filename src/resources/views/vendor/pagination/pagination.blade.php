@@ -1,7 +1,3 @@
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@endsection
-
 @if ($paginator->hasPages())
     <nav class="pagination">
         <ul class="pagination-list">
@@ -20,7 +16,7 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <li class="pagination-item active">
-                                <span class="pagination-link">{{ $page }}</span>
+                                <span class="pagination-link isActive">{{ $page }}</span> <!-- isActive class applied -->
                             </li>
                         @else
                             <li class="pagination-item">
