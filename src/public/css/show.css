@@ -1,0 +1,151 @@
+body{
+    background-color: rgba(248, 248, 248, 1);
+}
+
+.nav{
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.product-detail{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product-detail__content{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-detail__image{
+    width: 50%;
+}
+img {
+    width: 90%;
+}
+
+.register-form__input-image {
+    height: 40px;
+    color: transparent;
+}
+
+.product-detail__input-image {
+    height: 40px;
+    margin-bottom: 30px;
+}
+
+.product-detail__input-image::file-selector-button {
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-detail__items{
+    width: 50%;
+}
+
+.product-detail__item-name:first-of-type{
+    margin-top: 0;
+}
+
+.product-detail__item-name{
+    margin-bottom: 0px;
+}
+
+.product-detail__input-name{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgba(224, 223, 222, 1);
+    margin-bottom: 30px;
+}
+
+.product-detail__input-price {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgba(224, 223, 222, 1);
+    margin-bottom: 30px;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    position: relative;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #000;
+    border-color: #000;
+}
+
+input[type="checkbox"]:checked::after {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 100%, 50% 50%, 25% 25%, 50% 75%);
+}
+
+label:nth-child(n+3) {
+    margin-left: 40px;
+}
+
+.product-detail__input-description{
+    width: 100%;
+    height: 160px;
+    border-radius: 5px;
+    border: 1px solid rgba(224, 223, 222, 1);
+    margin-bottom: 30px;
+}
+
+.product-detail__button {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px;
+    width: 100%;
+    height: 50px;
+}
+
+.product-detail__button-back {
+    width: 15%;
+    padding: 13px 10px;
+    background-color: rgba(224, 223, 222, 1);
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(75, 75, 75, 1);
+    margin-right: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.product-detail__button-edit{
+    width: 15%;
+    padding: 13px 10px;
+    background-color: rgba(245, 200, 0, 1);
+    border-radius: 5px;
+    border: none;
+    color: rgba(75, 75, 75, 1);
+    margin-right: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.product-detail__button-delete{
+    justify-content: right;
+}

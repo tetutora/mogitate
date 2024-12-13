@@ -27,6 +27,6 @@ class Season extends Model
             'winter' => '冬',
         ];
 
-        return $names[$this->name] ?? $this->name; // 該当するキーがない場合はそのまま返す
+        return $names[$this->name] ?? $this->name;
     }
 }
