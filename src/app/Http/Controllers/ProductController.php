@@ -30,21 +30,30 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $content = $request->only([
+        $content = $request->only
+        ([
             'name', 'price', 'season', 'description'
         ]);
+
         $imagePath = null;
         if ($request->hasFile('image'))
         {
             $imagePath = $request->file('image')->store('images', 'public');
         }
 
-        Product::create([
+        $product = Product::create
+        ([
             'name' => $content['name'],
             'price' => $content['price'],
             'image' => $imagePath,
             'description' => $content['description'],
         ]);
+
+        if (isset($content['season']))
+        {
+            $seasonIds = Season::whereIn('name', $content['season'])->pluck('id');
+            $product->seasons()->attach($seasonIds);
+        }
 
         return redirect('/products');
 

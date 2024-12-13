@@ -10,7 +10,7 @@ class Season extends Model
     use HasFactory;
 
     protected $fillable = [
-        'season'
+        'name'
     ];
 
     public function products()
