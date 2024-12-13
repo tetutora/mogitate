@@ -35,8 +35,12 @@ body{
     margin: auto;
 }
 
+.search{
+    width: 25%;
+}
+
 .search-form{
-    width: 20%;
+    width: 100%;
 }
 
 .search-form-name{

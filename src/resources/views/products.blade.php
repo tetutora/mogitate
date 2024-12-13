@@ -15,20 +15,26 @@
         </div>
     </div>
     <div class="list__content">
-        <div class="search-form">
-            <div class="search-form-name">
-                <input type="search" name="" id="" class="search-form__input-name" placeholder="商品名で検索">
+        <form action="{{ route('products') }}" method="get" id="sort-form">
+            <div class="search-form">
+                <div class="search-form-name">
+                    <input type="search" name="search" class="search-form__input-name" placeholder="商品名で検索" value="{{ request('search') }}">
+                </div>
+                <div class="search-form__button-name">
+                    <button type="submit" class="search-form__button-submit-name">検索</button>
+                </div>
+                <div class="search-form__title">
+                    <p class="search-form__title-value">価格順で表示</p>
+                </div>
+                <div class="search-form__input">
+                    <select name="price_order" class="search-form__input-value" onchange="this.form.submit()">
+                        <option value="" disabled selected>価格で並べ替え</option>
+                        <option value="asc" {{ request('price_order') == 'asc' ? 'selected' : '' }}>安い順</option>
+                        <option value="desc" {{ request('price_order') == 'desc' ? 'selected' : '' }}>高い順</option>
+                    </select>
+                </div>
             </div>
-            <div class="search-form__button-name">
-                <button type="submit" class="search-form__button-submit-name">検索</button>
-            </div>
-            <div class="search-form__title">
-                <p class="search-form__title-value">価格順で表示</p>
-            </div>
-            <div class="search-form__input">
-                <input type="search" name="" id="" class="search-form__input-value">
-            </div>
-        </div>
+        </form>
         <div class="product-grid">
             @foreach($products as $product)
             <div class="product-item">
@@ -42,6 +48,9 @@
             </div>
             @endforeach
         </div>
+    </div>
+    <div class="pagination">
+        {{ $products->links('pagination') }}
     </div>
 </div>
 @endsection

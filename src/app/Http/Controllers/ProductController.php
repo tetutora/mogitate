@@ -12,11 +12,36 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function products()
-    {
-        $products = Product::with('seasons')->get();
-        return view('products',compact('products'));
-    }
+    // public function products()
+    // {
+    //     $products = Product::with('seasons')->get();
+    //     return view('products',compact('products'));
+    // }
+
+    public function products(Request $request)
+{
+    // 検索条件を取得
+    $search = $request->input('search');
+    $priceOrder = $request->input('price_order'); // nullの場合は価格順で並べない
+
+    // 商品を検索・並べ替え
+    $products = Product::query()
+        ->when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%");
+        })
+        ->when($priceOrder, function ($query, $priceOrder) {
+            return $query->orderBy('price', $priceOrder);
+        }, function ($query) {
+            // デフォルトは登録順（作成日時の降順）
+            return $query->orderBy('created_at', 'desc');
+        })
+        ->paginate(6); // 1ページに6件表示
+
+    // ビューに渡す
+    return view('products', compact('products'));
+}
+
+
 
     public function show($productId)
     {
@@ -101,7 +126,6 @@ class ProductController extends Controller
 
         return redirect()->route('products');
     }
-
 }
 
 
