@@ -1,33 +1,54 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/product_show.css') }}">
-@endsection
 
 @section('content')
+<nav class="breadcrumb">
+    <a href="{{ route('products') }}">商品一覧</a>
+    &gt; <span>詳細</span>
+</nav>
 <div class="product-detail">
-    <!-- 商品名 -->
-    <h2>{{ $product->name }}</h2>
-
-    <!-- 商品画像 -->
     <div class="product-detail__image">
         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+        <div class="product-detail__image-edit">
+            <input type="file" name="image" id="imageInput" class="register-form__input-image" onchange="previewImage(event)">
+        </div>
     </div>
-
-    <!-- 商品情報 -->
-    <div class="product-detail__info">
-        <p><strong>価格:</strong> ¥{{ number_format($product->price) }}</p>
-        <p><strong>季節:</strong>
-            @foreach($product->seasons as $season)
-                {{ $season->name }}{{ !$loop->last ? ',' : '' }} <!-- 季節が複数あればカンマ区切りで表示 -->
-            @endforeach
-        </p>
-        <p><strong>商品説明:</strong> {{ $product->description }}</p>
-    </div>
-
-    <!-- 戻るボタン -->
-    <div class="product-detail__buttons">
-        <a href="{{ route('products') }}" class="back-button">戻る</a> <!-- 商品一覧ページに戻る -->
+    <div class="product-detail__items">
+        <div class="product-detail__item">
+            <p class="product-detail__item-name">商品名</p>
+            <input type="text" name="name" value="{{ old('name') }}" class="product-detail__input-name">
+        </div>
+        <div class="product-detail__item">
+            <p class="product-detail__item-price">値段</p>
+            <input type="text" name="price" value="{{ old('price') }}" class="product-detail__input-price">
+        </div>
+        <div class="register-form__item">
+            <p class="register-form-name">季節</p>
+            <label>
+                <input type="checkbox" name="season[]" value="spring" {{ is_array(old('season')) && in_array('spring', old('season')) ? 'checked' : '' }}> 春
+            </label>
+            <label>
+                <input type="checkbox" name="season[]" value="summer" {{ is_array(old('season')) && in_array('summer', old('season')) ? 'checked' : '' }}> 夏
+            </label>
+            <label>
+                <input type="checkbox" name="season[]" value="autumn" {{ is_array(old('season')) && in_array('autumn', old('season')) ? 'checked' : '' }}> 秋
+            </label>
+            <label>
+                <input type="checkbox" name="season[]" value="winter" {{ is_array(old('season')) && in_array('winter', old('season')) ? 'checked' : '' }}> 冬
+            </label>
+        </div>
+        <div class="product-detail__item">
+            <p class="register-form-name">商品説明<span class="required">必須</span></p>
+            <textarea name="description" class="register-form__input-description">{{ old('description') }}
+            </textarea>
+        </div>
+        <div class="product-detail__button">
+            <a href="/products" class="product-detail__button-back">戻る</a>
+            <button type="submit" class="product-detail__button-edit">変更を保存</button>
+            <button type="submit" class="product-detail__button-delete">🗑️</button>
+        </div>
     </div>
 </div>
+
 @endsection
