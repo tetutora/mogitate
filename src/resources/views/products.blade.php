@@ -29,10 +29,18 @@
                 <input type="search" name="" id="" class="search-form__input-value">
             </div>
         </div>
-        <div class="list-image">
-            <a href="" class="list-mage__item">
-                <img src="../../storage/fruits-img/banana.png" alt="banana">
-            </a>
+        <div class="product-grid">
+            @foreach($products as $product)
+            <div class="product-item">
+                <a href="{{ route('show', $product->id) }}">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                </a>
+                <div class="product-info">
+                    <span class="product-name">{{ $product->name }}</span>
+                    <span class="product-price">¥{{ number_format($product->price) }}</span>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>
