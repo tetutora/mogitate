@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +13,9 @@ use App\Http\Controllers\ProductsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/register', [ProductsController::class, 'showRegisterForm']);
+Route::get('/register', [ProductController::class, 'showRegisterForm']);
 
-Route::get('/products',[ProductsController::class,'products']);
+Route::get('/products',[ProductController::class,'products']);
 
-Route::post('/register',[ProductsController::class,'register']);
+Route::post('/register',[ProductController::class,'store']);
 
