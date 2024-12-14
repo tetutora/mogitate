@@ -12,36 +12,26 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // public function products()
-    // {
-    //     $products = Product::with('seasons')->get();
-    //     return view('products',compact('products'));
-    // }
-
     public function products(Request $request)
-{
-    // 検索条件を取得
-    $search = $request->input('search');
-    $priceOrder = $request->input('price_order'); // nullの場合は価格順で並べない
+    {
+        $search = $request->input('search');
+        $priceOrder = $request->input('price_order');
 
-    // 商品を検索・並べ替え
-    $products = Product::query()
-        ->when($search, function ($query, $search) {
+        $products = Product::query()->when($search, function ($query, $search)
+        {
             return $query->where('name', 'like', "%{$search}%");
         })
-        ->when($priceOrder, function ($query, $priceOrder) {
+        ->when($priceOrder, function ($query, $priceOrder)
+        {
             return $query->orderBy('price', $priceOrder);
-        }, function ($query) {
-            // デフォルトは登録順（作成日時の降順）
+        },function ($query)
+        {
             return $query->orderBy('created_at', 'desc');
         })
-        ->paginate(6); // 1ページに6件表示
+        ->paginate(6);
 
-    // ビューに渡す
-    return view('products', compact('products'));
-}
-
-
+        return view('products', compact('products'));
+    }
 
     public function show($productId)
     {
@@ -98,18 +88,15 @@ class ProductController extends Controller
             'description' => $content['description'] ?? $product->description,
         ]);
 
-        // 画像がアップロードされた場合、保存
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
             $product->image = $imagePath;
             $product->save();
         }
 
-        // 季節の更新（多対多のリレーションを更新）
         $seasons = Season::whereIn('name', $request->input('season', []))->get();
         $product->seasons()->sync($seasons);
 
-        // 成功メッセージを表示して、商品詳細ページにリダイレクト
         return redirect()->route('show', $product->id);
     }
 
