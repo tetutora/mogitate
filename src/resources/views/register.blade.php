@@ -20,7 +20,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <!-- 値段 -->
             <div class="register-form__item">
                 <p class="register-form-name">値段<span class="required">必須</span></p>
@@ -33,7 +33,7 @@
                     </div>
                 @endif
             </div>
-            
+
             <!-- 商品画像 -->
             <div class="register-form__item">
                 <p class="register-form-name">商品画像<span class="required">必須</span></p>
@@ -43,7 +43,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <!-- 季節 -->
             <div class="register-form__item">
                 <p class="register-form-name">季節<span class="required">必須</span><span class="select">複数選択可</span></p>
@@ -63,7 +63,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <!-- 商品説明 -->
             <div class="register-form__item">
                 <p class="register-form-name">商品説明<span class="required">必須</span></p>

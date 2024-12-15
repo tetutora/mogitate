@@ -16,21 +16,31 @@
         @method('POST')
         <div class="product-detail__content">
             <div class="product-detail__image">
-                <!-- プレビュー用の画像タグ -->
                 <img id="previewImage" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-detail__image-display">
                 <div class="product-detail__image-edit">
                     <input type="file" name="image" id="imageInput" class="product-detail__input-image" onchange="previewImage(event)">
                 </div>
             </div>
             <div class="product-detail__items">
+                <!-- 商品名 -->
                 <div class="product-detail__item">
                     <p class="product-detail__item-name">商品名</p>
-                    <input type="text" name="name" value="{{ $product->name }}" class="product-detail__input-name">
+                    <input type="text" name="name" value="{{ $product->name }}" class="product-detail__input-name" placeholder="商品名を入力">
+                    @error('name')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
+
+                <!-- 値段 -->
                 <div class="product-detail__item">
                     <p class="product-detail__item-name">値段</p>
-                    <input type="text" name="price" value="{{ $product->price }}" class="product-detail__input-price">
+                    <input type="text" name="price" value="{{ $product->price }}" class="product-detail__input-price" placeholder="値段を入力">
+                    @error('price')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
+
+                <!-- 季節 -->
                 <div class="product-detail__item">
                     <p class="product-detail__item-name">季節</p>
                     <label>
@@ -45,12 +55,20 @@
                     <label>
                         <input type="checkbox" name="season[]" value="winter" {{ in_array('winter', $product->seasons->pluck('name')->toArray()) ? 'checked' : '' }}> 冬
                     </label>
+                    @error('season')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
         </div>
+
+        <!-- 商品説明 -->
         <div class="product-detail__item">
             <p class="product-detail__item-name">商品説明</p>
-            <textarea name="description" class="product-detail__input-description">{{ $product->description }}</textarea>
+            <textarea name="description" class="product-detail__input-description" placeholder="商品の説明を入力">{{ $product->description }}</textarea>
+            @error('description')
+                <div class="error">{{ $message }}</div>
+            @enderror
         </div>
         <div class="product-detail__button">
             <a href="/products" class="product-detail__button-back">戻る</a>
@@ -70,22 +88,18 @@
 
 @section('js')
 <script>
-    // 画像プレビューの関数
     function previewImage(event) {
-        var file = event.target.files[0]; // 選択したファイル
-        console.log('Selected file:', file);  // 選択されたファイルをログに表示
+        var file = event.target.files[0];
         var reader = new FileReader();
-        
-        // 画像が選択されたとき、プレビュー表示
-        reader.onload = function(e) {
-            var preview = document.getElementById('previewImage'); // プレビュー画像要素
-            console.log('Image preview URL:', e.target.result);  // プレビューURLをログに表示
-            preview.src = e.target.result; // 選択された画像にプレビューを更新
+        reader.onload = function(e)
+        {
+            var preview = document.getElementById('previewImage');
+            preview.src = e.target.result;
         };
-        
-        if (file) {
-            reader.readAsDataURL(file); // 選択した画像を読み込む
-        }
+        reader.readAsDataURL(file);
+        @error('image')
+            <div class="error">{{ $message }}</div>
+        @enderror
     }
 </script>
 @endsection
