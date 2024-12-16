@@ -1,10 +1,20 @@
 # mogitate-test
 
 ## 環境構築
-- 1.https://github.com/tetutora/mogitate
-- 2.Dockerのビルド  docker-compose up -d --build
-- 3.PHPコンテナの起動  docker-compose exec php bash
-- 4.マイグレーションの実行  php artisan migrate
+- 1.git clone https://github.com/tetutora/mogitate
+- 2.cd mogitate
+- 3.git remote set-url origin 作成したリポジトリのURL
+- 4.git remote -v で変更先のurlが表示されれば成功
+- 5.git add .
+- 6.git commit -m "リモートリポジトリの変更"
+- 7.git push origin main で作成したリポジトリに変更が反映されていれば成功
+- 8.Dockerのビルド  docker-compose up -d --build
+- 9.PHPコンテナの起動  docker-compose exec php bash
+- 10.パッケージのインストール  composer install
+- 11..envファイルの作成  cp .env.example .env
+- 11-1. DB_HOST=mysql、DB_DATABASE=laravel_db、DB_USERNAME=laravel_user、DB_PASSWORD=laravel_pass
+- 12.php artisan key:generate コマンド実行
+- 12.マイグレーションの実行  php artisan migrate
 - 5.シーディングの実行
 - 5-1.php artisan db:seed --class=CategoriesSeeder
 - 5-2.php artisan db:seed --class=ContactsSeeder
