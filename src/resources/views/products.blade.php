@@ -48,6 +48,7 @@
             <div class="product-item">
                 <a href="{{ route('show', $product->id) }}">
                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                    {{ dd(asset('storage/products/' . $product->image)) }}
 
                 </a>
                 <div class="product-info">
