@@ -14,10 +14,13 @@ class ProductController extends Controller
 {
     public function products(Request $request)
     {
+        $products = Product::all();
+
         $search = $request->input('search');
         $priceOrder = $request->input('price_order');
 
-        $products = Product::query()->when($search, function ($query, $search)
+        $products = Product::query()
+        ->when($search, function ($query, $search)
         {
             return $query->where('name', 'like', "%{$search}%");
         })
@@ -55,7 +58,8 @@ class ProductController extends Controller
         $imagePath = null;
         if ($request->hasFile('image'))
         {
-            $imagePath = $request->file('image')->store('images', 'public');
+            $imagePath = $request->file('image')->store('products', 'public');
+            // $imagePath = $request->file('image')->store('images', 'public');
         }
 
         $product = Product::create

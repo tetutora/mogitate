@@ -2,6 +2,8 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
 @endsection
 
 @section('content')
@@ -80,7 +82,7 @@
     <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
         @csrf
         @method('DELETE')
-        <button type="submit" class="product-detail__button-delete">🗑️ 削除</button>
+        <button type="submit" class="product-detail__button-delete"><span class="material-icons">delete</span></button>
     </form>
 </div>
 

@@ -150,6 +150,11 @@ label:nth-child(n+3) {
     justify-content: right;
 }
 
+.material-icons{
+    color: red;
+    border-radius: 5px;
+}
+
 .error {
     color: red;
     font-size: 14px;
