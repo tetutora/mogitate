@@ -12,9 +12,8 @@
 - 9.PHPコンテナの起動  docker-compose exec php bash
 - 10.パッケージのインストール  composer install
 - 11..envファイルの作成  cp .env.example .env
-- 11-1. DB_HOST=mysql、DB_DATABASE=laravel_db、DB_USERNAME=laravel_user、DB_PASSWORD=laravel_pass
-- 12.php artisan key:generate コマンド実行
-- 13.マイグレーションの実行  php artisan migrate
+- 12..envファイルの修正 DB_HOST=mysql、DB_DATABASE=laravel_db、DB_USERNAME=laravel_user、DB_PASSWORD=laravel_pass
+- 13.php artisan key:generate コマンド実行
 - 14.シーディングの実行 php artisan db:seed
 - 15.完了
 
