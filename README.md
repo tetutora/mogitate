@@ -1,4 +1,4 @@
-# mogitate-test
+# mogitate
 
 ## 環境構築
 - 1.git clone https://github.com/tetutora/mogitate
