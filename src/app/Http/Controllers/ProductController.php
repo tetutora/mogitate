@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,7 +49,7 @@ class ProductController extends Controller
         return view('register');
     }
 
-    public function store(ProductRequest $request)
+    public function store(RegisterRequest $request)
     {
         $content = $request->only
         ([
@@ -59,7 +60,6 @@ class ProductController extends Controller
         if ($request->hasFile('image'))
         {
             $imagePath = $request->file('image')->store('products', 'public');
-            // $imagePath = $request->file('image')->store('images', 'public');
         }
 
         $product = Product::create
@@ -76,33 +76,35 @@ class ProductController extends Controller
             $product->seasons()->attach($seasonIds);
         }
 
-        return redirect('/products');
+        return redirect('products');
 
     }
 
     public function update(ProductRequest $request, $productId)
-    {
-        $product = Product::findOrFail($productId);
+{
+    $product = Product::findOrFail($productId);
 
-        $content = $request->only(['name', 'price', 'description']);
+    $content = $request->only(['name', 'price', 'description']);
 
-        $product->update([
-            'name' => $content['name'],
-            'price' => $content['price'],
-            'description' => $content['description'] ?? $product->description,
-        ]);
+    $product->update([
+        'name' => $content['name'],
+        'price' => $content['price'],
+        'description' => $content['description'] ?? $product->description,
+    ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-            $product->image = $imagePath;
-            $product->save();
-        }
-
-        $seasons = Season::whereIn('name', $request->input('season', []))->get();
-        $product->seasons()->sync($seasons);
-
-        return redirect()->route('show', $product->id);
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('products', 'public');
+        $product->image = $imagePath;
+        $product->save();
     }
+
+    $seasons = Season::whereIn('name', $request->input('season', []))->get();
+    $product->seasons()->sync($seasons);
+
+    // 商品更新後に商品一覧ページにリダイレクト
+    return redirect()->route('products');
+}
+
 
     public function destroy($id)
     {

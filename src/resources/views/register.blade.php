@@ -72,7 +72,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-            
+
             <!-- ボタン -->
             <div class="register-form__button">
                 <a href="/products" class="register-form__button-back">戻る</a>
@@ -84,23 +84,22 @@
 
 @section('scripts')
 <script>
-    // 画像プレビュー用のJavaScript関数
     function previewImage(event) {
-        const file = event.target.files[0]; // 最初のファイルを取得
+        const file = event.target.files[0];
         const reader = new FileReader();
 
         reader.onload = function(e) {
             const imagePreview = document.getElementById('imagePreview');
-            imagePreview.innerHTML = ''; // 以前のプレビューを消す
+            imagePreview.innerHTML = '';
             const img = document.createElement('img');
-            img.src = e.target.result; // 読み込んだ画像のURLをセット
+            img.src = e.target.result;
             img.alt = '商品画像プレビュー';
-            img.style.maxWidth = '300px'; // プレビュー画像の最大幅を設定（任意）
-            imagePreview.appendChild(img); // プレビューを表示
+            img.style.maxWidth = '300px';
+            imagePreview.appendChild(img);
         };
 
         if (file) {
-            reader.readAsDataURL(file); // 画像をDataURLとして読み込む
+            reader.readAsDataURL(file);
         }
     }
 </script>

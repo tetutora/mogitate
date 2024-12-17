@@ -15,10 +15,11 @@ rel="stylesheet">
 <div class="product-detail">
     <form action="{{ route('products.update', $product->id) }}" method="post" enctype="multipart/form-data">
         @csrf
-        @method('POST')
+        @method('PUT')
         <div class="product-detail__content">
             <div class="product-detail__image">
-                <img id="previewImage" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-detail__image-display">
+                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+
                 <div class="product-detail__image-edit">
                     <input type="file" name="image" id="imageInput" class="product-detail__input-image" onchange="previewImage(event)">
                 </div>

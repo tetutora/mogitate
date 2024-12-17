@@ -48,7 +48,6 @@
             <div class="product-item">
                 <a href="{{ route('show', $product->id) }}">
                     <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-
                 </a>
                 <div class="product-info">
                     <span class="product-name">{{ $product->name }}</span>
@@ -67,8 +66,8 @@
 <script>
     function resetFilter() {
         const url = new URL(window.location.href);
-        url.searchParams.delete('price_order'); // 'price_order' パラメータを削除
-        window.location.href = url.toString(); // 新しいURLでリダイレクト
+        url.searchParams.delete('price_order');
+        window.location.href = url.toString();
     }
 </script>
 @endsection

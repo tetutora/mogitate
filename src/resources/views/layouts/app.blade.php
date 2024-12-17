@@ -6,14 +6,12 @@
     <title>mogitate</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
     @yield('css')
 </head>
 <body>
     <header class="header">
         <div class="header_inner">
-            <a href="/" class="header__logo">mogitate</a>
+            <a href="/products" class="header__logo">mogitate</a>
         </div>
     </header>
     <main>

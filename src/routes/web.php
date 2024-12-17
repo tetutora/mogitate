@@ -23,8 +23,8 @@ Route::post('/register', [ProductController::class, 'store']);  // 商品の登�
 
 Route::get('/products/{productId}', [ProductController::class, 'show'])->name('show');  // 商品詳細ページ
 
-Route::get('/products/{productId}/edit', [ProductController::class, 'showEditForm'])->name('products.edit');  // 商品編集フォーム
+// Route::get('/products/{productId}/edit', [ProductController::class, 'showEditForm'])->name('products.edit');
 
-Route::post('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');  // 商品の更新処理
+Route::put('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');  // 商品の更新処理
 
 Route::delete('/products/{productId}', [ProductController::class, 'destroy'])->name('products.destroy');  // 商品削除処理

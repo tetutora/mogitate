@@ -19,7 +19,7 @@
         <p><strong>価格:</strong> ¥{{ number_format($product->price) }}</p>
         <p><strong>季節:</strong>
             @foreach($product->seasons as $season)
-                {{ $season->japanese_name }}{{ !$loop->last ? ',' : '' }} <!-- 季節が複数あればカンマ区切りで表示 -->
+                {{ $season->japanese_name }}{{ !$loop->last ? ',' : '' }}
             @endforeach
         </p>
         <p><strong>商品説明:</strong> {{ $product->description }}</p>
@@ -27,7 +27,7 @@
 
     <!-- 戻るボタン -->
     <div class="product-detail__buttons">
-        <a href="{{ route('products') }}" class="back-button">戻る</a> <!-- 商品一覧ページに戻る -->
+        <a href="{{ route('products') }}" class="back-button">戻る</a>
     </div>
 </div>
 @endsection
